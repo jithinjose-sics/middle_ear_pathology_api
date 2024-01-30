@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
     'new': {
-        'ENGINE': 'django.db.backends.mysql',#MySQL engine will be used as the db engine
+        'ENGINE': 'mysql.connector.django',#MySQL engine will be used as the db engine
 	    'NAME': 'srishtic_middle_ear_pathology',#Name of the database created for this project
 	    'USER': 'srishtic_srishti_middle_ear',#Enter your mysql username
 	    'PASSWORD': 'srishti_middle_ear',#Enter your mysql password
