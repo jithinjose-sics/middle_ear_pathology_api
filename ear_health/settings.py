@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-zf%@1+&aoa&6_ccmrwt2en1ova&faw_zzx1^t-5&oknwqxy3%3
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "middle-ear-backend.onrender.com"
+    "127.0.0.1"
 ]
 
 
@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'doctor'
-
+    'doctor',
+    'videotoimage_app',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +144,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
