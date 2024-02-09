@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-zf%@1+&aoa&6_ccmrwt2en1ova&faw_zzx1^t-5&oknwqxy3%3
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "127.0.0.1"
+    "127.0.0.1",
+    "python.srishticampus.tech",
 ]
 
 
@@ -86,12 +87,12 @@ WSGI_APPLICATION = 'ear_health.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-    'new': {
-        'ENGINE': 'django.db.backends.mysql',#MySQL engine will be used as the db engine
+        'ENGINE': 'mysql.connector.django',#MySQL engine will be used as the db engine
 	    'NAME': 'srishtic_middle_ear_pathology',#Name of the database created for this project
 	    'USER': 'srishtic_srishti_middle_ear',#Enter your mysql username
 	    'PASSWORD': 'srishti_middle_ear',#Enter your mysql password
@@ -99,6 +100,8 @@ DATABASES = {
 	    'PORT': '3306',
         'OPTIONS': {
           'autocommit': True,
+          'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" ,
+          "use_pure": True,
         },
     }
 }
@@ -146,3 +149,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+APPEND_SLASH=False
