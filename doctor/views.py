@@ -32,3 +32,30 @@ def login_api_view(request):
         return Response({"user": serializer.data}, status=status.HTTP_200_OK)
     else:
         return Response({"error": "Invalid mobile number or password."}, status=status.HTTP_401_UNAUTHORIZED)
+@api_view(['GET'])
+def view_doctors(request):
+    if request.method=='GET':
+        details= doctor.objects.all()
+        serialized_details = []
+        for detail in details:
+            serialized_detail = {
+                'id': detail.id,
+                'name': detail.name,
+                'mobile_number': str(detail.mobile_number),  # Convert PhoneNumberField to string
+                'password': detail.password,
+                'email': detail.email,
+                'hospital_name': detail.hospital_name,
+                'doctor_id_number': detail.doctor_id_number
+            }
+            serialized_details.append(serialized_detail)
+        return Response(serialized_details)   
+@api_view(['DELETE'])
+def delete_doctor(request, doctor_id):
+    try:
+        doctors = doctor.objects.get(id=doctor_id)
+    except doctors.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        doctors.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
